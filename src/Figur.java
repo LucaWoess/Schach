@@ -1,0 +1,4 @@
+public enum Figur 
+{
+	KOENIG,DAME,LAEUFER,PFERD,TURM,BAUER
+}
