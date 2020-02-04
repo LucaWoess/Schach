@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Schach 
+public class Schach
 {
 	static Scanner Sc = new Scanner(System.in);
 	static final int FELDERANZAHL = 64;
@@ -14,6 +14,11 @@ public class Schach
 	static final String Bauer = "B";
 	
 	
+	public Schach(int SCHACHBRETTLAENGE) 
+	{
+		
+	}
+
 	public static void main(String[] args) 
 	{
 		String[] [] schachbrettfelder = new String[SPALTENZAHL] [REIHENZAHL];
@@ -54,10 +59,10 @@ public class Schach
 		System.out.println("B...Bauer");
 	 	System.out.print("Geben Sie an, welche Figur Sie platzieren möchten: ");
 	 	Figur = Sc.nextLine();
-	     while(Figur!="K"||Figur!="D"||Figur!="P"||Figur!="L"||Figur!="T"||Figur!="B") 
+	     while(!(Figur.equalsIgnoreCase("K"))||!(Figur.equalsIgnoreCase("D"))||!(Figur.equalsIgnoreCase("P"))||!(Figur.equalsIgnoreCase("L"))||!(Figur.equalsIgnoreCase("T"))||!(Figur.equalsIgnoreCase("B"))) 
 	     {
-	        System.out.println("Ungültige Eingabe! Bitte wählen sie einen der oben aufgelisteten Buchstaben aus!");
-	        System.out.print("Geben Sie an, welche Figur Sie platzieren möchten: ");
+	        System.err.println("Ungültige Eingabe! Bitte wählen sie einen der oben aufgelisteten Buchstaben aus!");
+	        System.out.print("\nGeben Sie an, welche Figur Sie platzieren möchten: ");
 			Figur = Sc.nextLine();
 	     }
 	}

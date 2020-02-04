@@ -1,4 +1,6 @@
 public class SchachMain 
 {
-	Schach schachbrett = new Schach();
+	public final int SCHACHBRETTLAENGE=8;
+	
+	Schach schachbrett = new Schach(SCHACHBRETTLAENGE);
 }
