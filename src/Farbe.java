@@ -1,4 +1,4 @@
 public enum Farbe 
 {
-	WEISS,SCHWARZ
+	W,S
 }

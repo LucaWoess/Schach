@@ -2,51 +2,44 @@ import java.util.Scanner;
 
 public class Schach
 {
+	Spielfiguren[][] schachbrett;
 	static Scanner Sc = new Scanner(System.in);
-	static final int FELDERANZAHL = 64;
-	static final int SPALTENZAHL = 8;
-	static final int REIHENZAHL = 8;
-	static final String Koenig = "K";
-	static final String Dame = "D";
-	static final String Turm = "T";
-	static final String Laeufer = "L";
-	static final String Pferd = "P";
-	static final String Bauer = "B";
 	
-	
+	Farbe w = Farbe.W;
+	Farbe s = Farbe.S;
+
+		
 	public Schach(int SCHACHBRETTLAENGE) 
 	{
-		
+		schachbrett = new Spielfiguren[SCHACHBRETTLAENGE][SCHACHBRETTLAENGE];
 	}
-
-	public static void main(String[] args) 
-	{
-		String[] [] schachbrettfelder = new String[SPALTENZAHL] [REIHENZAHL];
-		//Befüllen der Schachbrettfelder
-		for(int i=0;i<SPALTENZAHL;i++)
-		{
-			for(int k=0;k<REIHENZAHL;k++)
-			{
-				schachbrettfelder[i][k] = "-";
-			}
-		}
-		schachbrettAnzeigen(schachbrettfelder);
-		figurPlatzieren();
-		
-		
-	}
-
+	
 	public static void schachbrettAnzeigen(String schachbrettfelder[][])
 	{
 		System.out.println("+---+---+---+---+---+---+---+---+---+");
 		System.out.println("|   | a | b | c | d | e | f | g | h |");
 		System.out.println("+---+---+---+---+---+---+---+---+---+");
-		for(int i=REIHENZAHL-1;i>=0;i--)
+		for(int i= schachbrett.length -1;i>=0;i--)
 		{
-			System.out.println("| "+(i+1)+" | "+schachbrettfelder[i][1]+" | "+schachbrettfelder[i][1]+" | "+schachbrettfelder[i][2]+" | "+schachbrettfelder[i][3]+" | "+schachbrettfelder[i][4]+" | "+schachbrettfelder[i][5]+" | "+schachbrettfelder[i][6]+" | "+schachbrettfelder[i][7]+" |");
+			System.out.println("| "+(i+1)+" | "+schachbrett[i][1]+" | "+schachbrettfelder[i][1]+" | "+schachbrettfelder[i][2]+" | "+schachbrettfelder[i][3]+" | "+schachbrettfelder[i][4]+" | "+schachbrettfelder[i][5]+" | "+schachbrettfelder[i][6]+" | "+schachbrettfelder[i][7]+" |");
 			System.out.println("+---+---+---+---+---+---+---+---+---+");
 		}
 	}
+	
+	public int anzahlAnFigurenAmFeld()
+	{
+		int anzahlFiguren = 0;
+			for(int i=0;i < 8;i++)
+			{
+				for(int k=0;k < 8;i++)
+				{
+					if(schachbrett[i][k] != null) anzahlFiguren++;
+				}
+			}
+		return anzahlFiguren;
+	}
+	
+	
 	
 	public static void figurPlatzieren()
 	{
