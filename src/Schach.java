@@ -1,62 +1,74 @@
 import java.util.Scanner;
 
-public class Schach
+public class Schach 
 {
-	Spielfiguren[][] schachbrett;
+	static Spielfiguren[][] schachbrett;
 	static Scanner Sc = new Scanner(System.in);
-	
-	Farbe w = Farbe.W;
-	Farbe s = Farbe.S;
+	static int SCHACHBRETTLAENGE = 8;
+	static String[][] felder = new String[SCHACHBRETTLAENGE][SCHACHBRETTLAENGE];
 
-		
+	Farbe w = Farbe.WEISS;
+	Farbe s = Farbe.SCHWARZ;
+
 	public Schach(int SCHACHBRETTLAENGE) 
 	{
 		schachbrett = new Spielfiguren[SCHACHBRETTLAENGE][SCHACHBRETTLAENGE];
 	}
-	
-	public static void schachbrettAnzeigen(String schachbrettfelder[][])
+
+	public static void schachbrettAnzeigen()
 	{
 		System.out.println("+---+---+---+---+---+---+---+---+---+");
 		System.out.println("|   | a | b | c | d | e | f | g | h |");
 		System.out.println("+---+---+---+---+---+---+---+---+---+");
-		for(int i= schachbrett.length -1;i>=0;i--)
+		for(int i= SCHACHBRETTLAENGE-1;i>=0;i--)
 		{
-			System.out.println("| "+(i+1)+" | "+schachbrett[i][1]+" | "+schachbrettfelder[i][1]+" | "+schachbrettfelder[i][2]+" | "+schachbrettfelder[i][3]+" | "+schachbrettfelder[i][4]+" | "+schachbrettfelder[i][5]+" | "+schachbrettfelder[i][6]+" | "+schachbrettfelder[i][7]+" |");
+			System.out.println("| "+(i+1)+" | "+felder[i][1]+" | "+felder[i][1]+" | "+felder[i][2]+" | "+felder[i][3]+" | "+felder[i][4]+" | "+felder[i][5]+" | "+felder[i][6]+" | "+felder[i][7]+" |");
 			System.out.println("+---+---+---+---+---+---+---+---+---+");
 		}
 	}
 	
 	public int anzahlAnFigurenAmFeld()
 	{
-		int anzahlFiguren = 0;
-			for(int i=0;i < 8;i++)
-			{
-				for(int k=0;k < 8;i++)
-				{
-					if(schachbrett[i][k] != null) anzahlFiguren++;
-				}
-			}
-		return anzahlFiguren;
+		return anzahlAnFigurenAmFeld(w) + anzahlAnFigurenAmFeld(s);
 	}
 	
-	
-	
+	public int anzahlAnFigurenAmFeld(Farbe f)
+	{
+		int anzahlFiguren = 0;
+		for(int i=0;i < SCHACHBRETTLAENGE;i++)
+		{
+			for(int k=0;k < SCHACHBRETTLAENGE;k++)
+			{
+				if(felder[i][k] != null && schachbrett[i][k].figurfarbe==f) {anzahlFiguren++;}
+			}
+		}
+		return anzahlFiguren;
+	}
+
+
+
 	public static void figurPlatzieren()
 	{
-		String Figur;
+		String figur;
 		System.out.println("K...König");
 		System.out.println("D...Dame");
 		System.out.println("P...Pferd");
 		System.out.println("L...Läufer");
 		System.out.println("T...Turm");
 		System.out.println("B...Bauer");
-	 	System.out.print("Geben Sie an, welche Figur Sie platzieren möchten: ");
-	 	Figur = Sc.nextLine();
-	     while(!(Figur.equalsIgnoreCase("K"))||!(Figur.equalsIgnoreCase("D"))||!(Figur.equalsIgnoreCase("P"))||!(Figur.equalsIgnoreCase("L"))||!(Figur.equalsIgnoreCase("T"))||!(Figur.equalsIgnoreCase("B"))) 
-	     {
-	        System.err.println("Ungültige Eingabe! Bitte wählen sie einen der oben aufgelisteten Buchstaben aus!");
-	        System.out.print("\nGeben Sie an, welche Figur Sie platzieren möchten: ");
-			Figur = Sc.nextLine();
-	     }
+		System.out.print("Geben Sie an, welche Figur Sie platzieren möchten: ");
+		figur = Sc.nextLine();
+		System.out.println(figur);
+		while(!(figur.equalsIgnoreCase("K"))||
+		(figur.equalsIgnoreCase("D"))||
+		(figur.equalsIgnoreCase("P"))||
+		(figur.equalsIgnoreCase("L"))||
+		(figur.equalsIgnoreCase("T"))||
+		(figur.equalsIgnoreCase("B")))
+		{
+			System.err.println("Ungültige Eingabe! Bitte wählen sie einen der oben aufgelisteten Buchstaben aus!");
+			System.out.print("\nGeben Sie an, welche Figur Sie platzieren möchten: ");
+			figur = Sc.nextLine();
+		}
 	}
 }
